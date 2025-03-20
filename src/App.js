@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import React, { Suspense } from "react";
 import Main from "./Main";
 import Home from "./Home";
@@ -14,7 +14,7 @@ const ContactUs = React.lazy(() => import("./app/pusb/pusb-contact/page"));
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Main>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
@@ -32,7 +32,7 @@ function App() {
           </Routes>
         </Suspense>
       </Main>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
