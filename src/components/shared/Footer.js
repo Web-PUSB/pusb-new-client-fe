@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FiInstagram, FiTwitter, FiLinkedin, FiYoutube } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { AiFillSpotify } from "react-icons/ai";
-import pusblogo from "@/assets/pusblogo.png"; // Adjust path as needed
+import pusblogo from "../../assets/pusblogo2.png";
 
 const Footer = () => {
   const [profilePUSB, setProfilePUSB] = useState(null);

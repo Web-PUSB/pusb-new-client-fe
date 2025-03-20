@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDateNews } from "./utils/formatTime"; // Ensure correct path
+import { formatDateNews } from "../../../../utils/formatTime"; 
 
 const CardNews = ({ news }) => {
   const { day, month } = formatDateNews(news.publish_date);

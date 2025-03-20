@@ -6,8 +6,8 @@ import {
   MOSATeamsContainer,
   MOSDTeamsContainer,
   MOCTeamsContainer,
-} from "./pusb-structure/components/CardTeamsContainer"; // Ensure this path is correct
-import pusblogo from "@/assets/pusblogo.png"; // Ensure correct path
+} from "./_components/CardTeamsContainer";
+import pusblogo from "../../../assets/pusblogo2.png";
 
 const Page = () => {
   return (

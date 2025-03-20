@@ -2,8 +2,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import KeenSlider from "keen-slider";
 import "keen-slider/keen-slider.min.css";
-import CardHighlight from "@/components/cards/CardHighlight";
-import { eventsHighlightPUSB } from "@/lib/data";
+import CardHighlight from "../../../../components/cards/CardHighlight/index";
+import { eventsHighlightPUSB } from "../../../../lib/data";
 
 const animation = { duration: 100000, easing: (t) => t };
 

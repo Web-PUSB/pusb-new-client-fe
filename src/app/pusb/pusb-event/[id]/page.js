@@ -1,25 +1,24 @@
-"use client";
 import React, { useRef, useEffect, useState } from "react";
-import BannerEvent from "..pusb-event/[id]/_components/BannerEvent";
-import ContainerTimelineEvents from "..pusb-event/[id]/_components/ContainerTimelineEvents";
-import Link from "next/link";
-import { Events } from "..src/types/pusb-event-type";
-import { GetPUSBEventById } from "..src/pages/api/pusb-events";
-import Loader from "..src/components/shared/Loader";
+import BannerEvent from "../pusb-event/[id]/_components/BannerEvent";
+import ContainerTimelineEvents from "../pusb-event/[id]/_components/ContainerTimelineEvents";
+import Loader from "../src/components/shared/Loader";
 
-const Page = ({ params }: { params: { id: string } }) => {
-  const [pusbEvent, setPUSBEvent] = useState<Events>();
-  const [loading, setLoading] = useState<boolean>(true);
-  const element = useRef<HTMLDivElement>(null);
-  const id = params.id;
+const Page = ({ id }) => {
+  const [pusbEvent, setPUSBEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const element = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
-      const data = await GetPUSBEventById(id);
-      setPUSBEvent(data);
+      try {
+        const response = await fetch(`/api/pusb-events/${id}`);
+        const data = await response.json();
+        setPUSBEvent(data);
+      } catch (err) {
+        console.error("Failed to load event data:", err);
+      }
       setLoading(false);
-      console.log(data);
     };
     fetchData();
   }, [id]);
@@ -47,15 +46,16 @@ const Page = ({ params }: { params: { id: string } }) => {
             eventImage={pusbEvent?.thumbnail || "/default"}
             handleScrollDown={handleScrollDown}
           />
+
           <section className="w-full mt-8">
             <h2 className="text-2xl lg:text-3xl font-bold mb-4">
               Timeline Event
             </h2>
-
             <div className="w-full py-8 px-4 overflow-hidden overflow-x-auto scrollbar-timeline">
               <ContainerTimelineEvents eventId={id} />
             </div>
           </section>
+
           <section
             ref={element}
             className="w-full mt-16 bg-white dark:bg-gray-900"
@@ -83,22 +83,26 @@ const Page = ({ params }: { params: { id: string } }) => {
 
                 {pusbEvent?.recruitment_link &&
                   pusbEvent.recruitment_link !== "#" && (
-                    <Link
+                    <a
                       href={pusbEvent.recruitment_link}
                       className="inline-flex items-center justify-center w-full px-4 py-2.5 overflow-hidden text-sm text-white transition-colors duration-300 bg-gray-900 rounded-lg shadow sm:w-auto sm:mx-2 hover:bg-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <span className="mx-2">Public Participant</span>
-                    </Link>
+                    </a>
                   )}
 
                 {pusbEvent?.audience_link &&
                   pusbEvent.audience_link !== "#" && (
-                    <Link
-                      href={pusbEvent.audience_link} // Use the actual audience link
+                    <a
+                      href={pusbEvent.audience_link}
                       className="inline-flex items-center justify-center w-full px-4 py-2.5 mt-4 overflow-hidden text-sm text-white transition-colors duration-300 bg-blue-600 rounded-lg shadow sm:w-auto sm:mx-2 sm:mt-0 hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       <span className="mx-2">Finalist Participant</span>
-                    </Link>
+                    </a>
                   )}
               </div>
             </div>

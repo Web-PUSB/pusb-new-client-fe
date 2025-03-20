@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CardCnCActivity from "./CardCnCActivity";
-import { GetPUSBCNCWorkplanByCnCId } from "././pages/api/pusb-cnc";
-import { WorkplanCNC } from "..src/types/pusb-cnc-type";
-const CardCnCActivityContainer = async ({ id }: { id: string }) => {
-  const Workplan: WorkplanCNC[] = await GetPUSBCNCWorkplanByCnCId(id);
+
+const CardCnCActivityContainer = ({ id }) => {
+  const [workplan, setWorkplan] = useState([]);
+
+  useEffect(() => {
+    const fetchWorkplan = async () => {
+      try {
+        const response = await fetch(`/api/pusb-cnc?id=${id}`);
+        const data = await response.json();
+        setWorkplan(data);
+      } catch (error) {
+        console.error("Failed to fetch workplan:", error);
+      }
+    };
+
+    fetchWorkplan();
+  }, [id]);
 
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-4">
-      {Workplan.map((work) => (
+      {workplan.map((work) => (
         <div key={work.id}>
-          <CardCnCActivity Workplan={work} />
+          <CardCnCActivity workplan={work} />
         </div>
       ))}
     </div>

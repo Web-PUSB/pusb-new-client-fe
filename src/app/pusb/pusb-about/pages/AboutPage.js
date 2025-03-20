@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { GetPUSBProfile } from "@/utils/aboutProfileAPI";
-import ContainerAccordion from "@/components/Accordion/ContainerAccordion";
-import CardLogoContainer from "@/components/CardLogoContainer";
-import { MissionPUSB } from "@/lib/data";  // Ensure this path is correct
+import { GetPUSBProfile } from "../utils/aboutProfileAPI";
+import ContainerAccordion from "../_components/Accordion/ContainerAccordion";
+import CardLogoContainer from "../_components/CardLogoContainer";
+import { MissionPUSB } from "../../../../lib/data"; 
 
 const PUSBPage = () => {
   const [profilePUSB, setProfilePUSB] = useState(null);

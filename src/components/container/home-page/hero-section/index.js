@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import SanctusLogo from "@/assets/sanctusLogo.png"; // TODO
+import SanctusLogo from "../../../../assets/sanctusLogo.png";
 import { AiFillCaretDown } from "react-icons/ai";
 
 const HomeHeroSection = ({ handleScrollDown }) => {

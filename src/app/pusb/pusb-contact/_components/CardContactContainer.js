@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Maskot from "@/assets/pusbmaskotsay.png";
+import Maskot from "../../../../assets/pusbmaskotsay.png";
 import { MdOutlineMailOutline, MdInfoOutline } from "react-icons/md";
 import { HiOutlineMapPin } from "react-icons/hi2";
-import CardContact from "@/CardContact";
-import { GetPUSBProfile } from "@/api/pusb-profile"; 
+import CardContact from "../_components/CardContact";
+import { GetPUSBProfile } from "../../../../pages/api/pusb-profile"; 
 
 const CardContactContainer = () => {
   const [profilePUSB, setProfilePUSB] = useState(null);

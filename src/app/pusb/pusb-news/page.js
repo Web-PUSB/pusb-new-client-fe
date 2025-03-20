@@ -1,7 +1,6 @@
 import React from "react";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import ContainerCardNews from "..src/app/pusb/pusb-news/_components/ContainerCardNews";
-import { GetPUSBNews } from "..src/pages/api/pusb-news";
+import ContainerCardNews from "./_components/ContainerCardNews";
+import { GetPUSBNews } from "../../../pages/api/pusb-news";
 
 const Page = async () => {
   let news = [];

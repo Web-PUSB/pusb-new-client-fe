@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { BaseUrl } from "..pusb/config/config";
+import { BaseUrl } from "../../config/config";
 
 export const GetPUSBProfile = async () => {
   try {

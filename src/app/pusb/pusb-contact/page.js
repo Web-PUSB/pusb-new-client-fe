@@ -1,5 +1,5 @@
 import React from "react";
-import CardContactContainer from "C://Users//Davina//Desktop//fe-new//official//src//app//pusb//pusb-contact//_components//CardContactContainer.tsx";
+import CardContactContainer from "./_components/CardContactContainer";
 
 const Page = () => {
   return (

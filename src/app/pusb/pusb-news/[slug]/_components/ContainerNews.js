@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate } from "./utils/formatTime"; // Ensure correct path
+import { formatDate } from "../../../../../utils/formatTime";
 
 const ContainerNews = ({ news }) => {
   return (

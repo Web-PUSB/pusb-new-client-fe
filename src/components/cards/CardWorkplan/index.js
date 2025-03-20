@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { Card } from "flowbite-react";
-import { MainWorkplan } from "..src/types/common.type";
-import ModalMainWorkplan from "..src/components/modal/ModalMainWorkplan";
+import ModalMainWorkplan from "../../../components/modal/ModalMainWorkplan";
 
-const CardWorkplan = ({
-  Workplan,
-  description,
-  index,
-}: MainWorkplan & { index: number }) => {
+const CardWorkplan = ({ Workplan, description, index }) => {
   const [openModal, setOpenModal] = useState(false);
-  const handleModalDescription: () => void = () => {
+
+  const handleModalDescription = () => {
     setOpenModal(!openModal);
   };
+
   return (
     <>
       <Card className="relative group h-56 block shadow-sm shadow-white rounded-tl-3xl rounded-br-3xl bg-black hover:bg-white hover:bg-opacity-20">
@@ -20,8 +17,11 @@ const CardWorkplan = ({
             Workplan # {index + 1}
           </p>
 
-          <p className="text-xl font-bold text-white sm:text-3xl">{Workplan}</p>
+          <p className="text-xl font-bold text-white sm:text-3xl">
+            {Workplan}
+          </p>
         </div>
+
         <div className="hidden absolute inset-0 group-hover:flex justify-center items-center text-white -ml-2 transition-all duration-300">
           <button
             className="text-base border-2 border-white px-6 py-1 rounded-lg hover:bg-gray-800"
@@ -30,6 +30,7 @@ const CardWorkplan = ({
             See more
           </button>
         </div>
+
         {openModal && (
           <ModalMainWorkplan
             openModal={openModal}

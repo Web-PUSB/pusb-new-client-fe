@@ -1,23 +1,16 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
-import CardTabEvents from "..pusb-event/_components/CardTabEvents";
-import { Events } from "..src/types/pusb-event-type";
-import { GetPUSBEvent } from "..src/pages/api/pusb-events";
-import Pagination from "..src/components/shared/Pagination";
-import Sceleton from "..src/components/shared/Sceleton";
-import DropdownFilter from "..src/components/shared/DropdownFilter";
+import CardTabEvents from "../pusb-event/components/CardTabEvents";
+import { GetPUSBEvent } from "../api/pusb-events";
+import Pagination from "../components/shared/Pagination";
+import Sceleton from "../components/shared/Sceleton";
+import DropdownFilter from "../components/shared/DropdownFilter";
 
 const Page = () => {
-  const [pusbEvents, setPusbEvents] = useState<Events[]>([]);
+  const [pusbEvents, setPusbEvents] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
-  const [selectedFilters, setSelectedFilters] = useState<{
-    status: string[];
-    audience: string[];
-    period: string[];
-  }>({
+  const [selectedFilters, setSelectedFilters] = useState({
     status: [],
     audience: [],
     period: [],
@@ -31,9 +24,9 @@ const Page = () => {
       try {
         const events = await GetPUSBEvent();
         setPusbEvents(events);
-        setLoading(false);
       } catch (err) {
-        setError(`Failed to load events.${err}`);
+        setError(`Failed to load events. ${err.message}`);
+      } finally {
         setLoading(false);
       }
     };
@@ -56,7 +49,7 @@ const Page = () => {
     },
   ];
 
-  const filterEvents = (events: Events[]) => {
+  const filterEvents = (events) => {
     return events.filter((event) => {
       const statusMatch =
         selectedFilters.status.length === 0 ||
@@ -77,19 +70,15 @@ const Page = () => {
   const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
   const currentEvents = filteredEvents.slice(
     indexOfFirstEvent,
-    indexOfLastEvent,
+    indexOfLastEvent
   );
 
-  const handleFilterChange = (section: string, option: string) => {
+  const handleFilterChange = (section, option) => {
     setSelectedFilters((prev) => ({
       ...prev,
-      [section.toLowerCase()]: prev[
-        section.toLowerCase() as keyof typeof prev
-      ].includes(option)
-        ? prev[section.toLowerCase() as keyof typeof prev].filter(
-            (item) => item !== option,
-          )
-        : [...prev[section.toLowerCase() as keyof typeof prev], option],
+      [section.toLowerCase()]: prev[section.toLowerCase()].includes(option)
+        ? prev[section.toLowerCase()].filter((item) => item !== option)
+        : [...prev[section.toLowerCase()], option],
     }));
     setCurrentPage(1);
   };
@@ -97,7 +86,7 @@ const Page = () => {
   return (
     <main className="w-full min-h-screen px-8 lg:px-16">
       <section className="w-full text-center pt-8">
-        <h1 className="text-4xl leadi lg:text-5xl font-extrabold mb-4">
+        <h1 className="text-4xl lg:text-5xl font-extrabold mb-4">
           PUSB Events
         </h1>
         <h3 className="text-lg text-justify mt-8 mb-4">
@@ -105,6 +94,7 @@ const Page = () => {
         </h3>
       </section>
 
+      {/* Filter Section */}
       <div className="w-full flex justify-end mb-4 border border-black">
         <DropdownFilter
           sections={filterSections}
@@ -113,6 +103,7 @@ const Page = () => {
         />
       </div>
 
+      {/* Events List */}
       <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 py-4">
         {loading
           ? Array.from({ length: eventsPerPage }).map((_, index) => (
@@ -125,6 +116,7 @@ const Page = () => {
             ))}
       </div>
 
+      {/* Pagination */}
       {!loading && filteredEvents.length > eventsPerPage && (
         <Pagination
           currentPage={currentPage}
@@ -133,7 +125,8 @@ const Page = () => {
         />
       )}
 
-      <div>{error}</div>
+      {/* Error Handling */}
+      {error && <div className="text-red-500 mt-4">{error}</div>}
     </main>
   );
 };

@@ -1,21 +1,15 @@
 import React, { useEffect } from "react";
 import anime from "animejs";
-import { useRouter } from "next/navigation";
 
-interface SplashScreenProps {
-  finishLoading: () => void;
-}
-
-const SplashScreen = ({ finishLoading }: SplashScreenProps) => {
-  const router = useRouter();
+const SplashScreen = ({ finishLoading }) => {
   useEffect(() => {
     const textWrapper = document.querySelector(".ml10 .letters");
     if (textWrapper) {
       textWrapper.innerHTML =
-        textWrapper.textContent?.replace(
+        textWrapper.textContent.replace(
           /\S/g,
-          "<span class='letter'>$&</span>",
-        ) ?? "";
+          "<span class='letter'>$&</span>"
+        ) || "";
 
       anime
         .timeline({ loop: false })
@@ -28,12 +22,11 @@ const SplashScreen = ({ finishLoading }: SplashScreenProps) => {
         })
         .add({
           complete: () => {
-            finishLoading();
-            router.push("/pusb");
+            finishLoading(); 
           },
         });
     }
-  }, [finishLoading, router]);
+  }, [finishLoading]);
 
   return (
     <div className="flex h-screen items-center justify-center bg-gray-900 text-white">

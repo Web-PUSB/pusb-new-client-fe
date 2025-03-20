@@ -1,20 +1,10 @@
 import React from "react";
-import CardTabEvents from "..src/app/pusb/pusb-event/_components/CardTabEvents";
-import { Events } from "..src/types/pusb-event-type";
-import { ITEMS_PER_PAGE } from "..src/lib/constants";
-import Sceleton from "..src/components/shared/Sceleton";
+import CardTabEvents from "../_components/CardTabEvents";
+import Sceleton from "../../../../components/shared/Sceleton";
 
-const ContainerCardEvents = ({
-  isLatest,
-  pusbeEvents,
-  error,
-  loading,
-}: {
-  pusbeEvents: Events[];
-  error: string | null;
-  isLatest: boolean;
-  loading: boolean;
-}) => {
+const ITEMS_PER_PAGE = 6; // Adjust based on your requirements
+
+const ContainerCardEvents = ({ isLatest, pusbeEvents, error, loading }) => {
   // Handle error state
   if (error) {
     return <div>Error: {error}</div>;
@@ -22,7 +12,7 @@ const ContainerCardEvents = ({
 
   // Filter for PRESENT events and slice to get the top 3
   const presentPUSBEvent = pusbeEvents
-    .filter((event) => event.status === "PRESENT")
+    ?.filter((event) => event.status === "PRESENT")
     .slice(0, 3);
 
   // Determine events to display based on isLatest
@@ -38,7 +28,7 @@ const ContainerCardEvents = ({
           {Array.from({ length: isLatest ? 3 : ITEMS_PER_PAGE }).map(
             (_, index) => (
               <Sceleton key={index} />
-            ),
+            )
           )}
         </div>
       ) : (

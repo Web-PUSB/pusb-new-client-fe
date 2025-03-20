@@ -1,5 +1,5 @@
 import React from "react";
-import { GetPUSBCNC } from "..src/pages/api/pusb-cnc";
+import { GetPUSBCNC } from "../../../pages/api/pusb-cnc";
 import ContainerCardCnC from "./_components/ContainerCardCnC";
 const Page = async () => {
   let cncs = [];

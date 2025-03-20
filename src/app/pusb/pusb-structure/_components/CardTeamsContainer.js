@@ -13,13 +13,13 @@ import {
   mosaMembers,
   mosdMembers,
   mocMembers,
-} from "./data";
+} from "../../../../lib/data";
 import {
   ModalMOCSData,
-  ModalMOFData,
-  ModalMOSAData,
-  ModalMOSDData,
-  ModalMOCData,
+  // ModalMOFData,
+  // ModalMOSAData,
+  // ModalMOSDData,
+  // ModalMOCData,
 } from "./ModalMinisterData";
 
 const LabelHeader = ({ title }) => (
@@ -93,50 +93,52 @@ const TeamsContainer = ({
   </div>
 );
 
-export const MOCSTeamsContainer = (props) => (
-  <TeamsContainer title="MOCS" ministersCount={1} ministersData={mocsMinisters} membersData={mocsMembers} ModalComponent={ModalMOCSData} {...props} />
-);
+// TODO: Add after meet the members
 
-export const MOFTeamsContainer = (props) => (
-  <TeamsContainer title="MOF" ministersCount={1} ministersData={mofMinisters} membersData={mofMembers} ModalComponent={ModalMOFData} {...props} />
-);
+// export const MOCSTeamsContainer = (props) => (
+//   <TeamsContainer title="MOCS" ministersCount={1} ministersData={mocsMinisters} membersData={mocsMembers} ModalComponent={ModalMOCSData} {...props} />
+// );
 
-export const MOSATeamsContainer = (props) => (
-  <TeamsContainer title="MOSA" ministersCount={2} ministersData={mosaMinisters} membersData={mosaMembers} ModalComponent={ModalMOSAData} {...props} />
-);
+// export const MOFTeamsContainer = (props) => (
+//   <TeamsContainer title="MOF" ministersCount={1} ministersData={mofMinisters} membersData={mofMembers} ModalComponent={ModalMOFData} {...props} />
+// );
 
-export const MOSDTeamsContainer = (props) => (
-  <TeamsContainer title="MOSD" ministersCount={1} ministersData={mosdMinisters} membersData={mosdMembers} ModalComponent={ModalMOSDData} {...props} />
-);
+// export const MOSATeamsContainer = (props) => (
+//   <TeamsContainer title="MOSA" ministersCount={2} ministersData={mosaMinisters} membersData={mosaMembers} ModalComponent={ModalMOSAData} {...props} />
+// );
 
-export const MOCTeamsContainer = (props) => (
-  <TeamsContainer title="MOC" ministersCount={2} ministersData={mocMinisters} membersData={mocMembers} ModalComponent={ModalMOCData} {...props} />
-);
+// export const MOSDTeamsContainer = (props) => (
+//   <TeamsContainer title="MOSD" ministersCount={1} ministersData={mosdMinisters} membersData={mosdMembers} ModalComponent={ModalMOSDData} {...props} />
+// );
 
-export const ExecTeamsContainer = ({ title = "President & Vice President" }) => (
-  <div className="w-full px-4 lg:px-8 py-6 flex flex-col items-center">
-    <div className="w-full py-4 text-center">
-      <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold font-poppins">
-        {title}
-      </h2>
-    </div>
-    <div className="w-full flex justify-center">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 items-center">
-        <div className="sm:col-start-1 sm:col-span-1 flex justify-end">
-          <CardMinister {...execMinisters[1]} />
-        </div>
-        <div className="sm:col-start-2 sm:col-span-1 flex justify-center">
-          <CardMinister {...execMinisters[0]} />
-        </div>
-        <div className="sm:col-start-3 sm:col-span-1 flex justify-start">
-          <CardMinister {...execMinisters[2]} />
-        </div>
-      </div>
-    </div>
-    <div className="w-full mt-8 sm:mt-12 text-center">
-      <h2 className="text-lg sm:text-2xl lg:text-3xl font-semibold font-poppins">
-        President & Vice Presidents of Sanctus Cabinet
-      </h2>
-    </div>
-  </div>
-);
+// export const MOCTeamsContainer = (props) => (
+//   <TeamsContainer title="MOC" ministersCount={2} ministersData={mocMinisters} membersData={mocMembers} ModalComponent={ModalMOCData} {...props} />
+// );
+
+// export const ExecTeamsContainer = ({ title = "President & Vice President" }) => (
+//   <div className="w-full px-4 lg:px-8 py-6 flex flex-col items-center">
+//     <div className="w-full py-4 text-center">
+//       <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold font-poppins">
+//         {title}
+//       </h2>
+//     </div>
+//     <div className="w-full flex justify-center">
+//       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 items-center">
+//         <div className="sm:col-start-1 sm:col-span-1 flex justify-end">
+//           <CardMinister {...execMinisters[1]} />
+//         </div>
+//         <div className="sm:col-start-2 sm:col-span-1 flex justify-center">
+//           <CardMinister {...execMinisters[0]} />
+//         </div>
+//         <div className="sm:col-start-3 sm:col-span-1 flex justify-start">
+//           <CardMinister {...execMinisters[2]} />
+//         </div>
+//       </div>
+//     </div>
+//     <div className="w-full mt-8 sm:mt-12 text-center">
+//       <h2 className="text-lg sm:text-2xl lg:text-3xl font-semibold font-poppins">
+//         President & Vice Presidents of Sanctus Cabinet
+//       </h2>
+//     </div>
+//   </div>
+// );

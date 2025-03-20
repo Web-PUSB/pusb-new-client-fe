@@ -1,8 +1,8 @@
 import React from "react";
-import SanctusLogo from "@/assets/sanctusLogo.png";
-import CardLogoColor from "@/CardLogoColor";
-import CardLogoShape from "@/CardLogoShape";
-import { logoColor, groupedLogoShapes } from "@/lib/data";
+import SanctusLogo from "../../../../assets/sanctusLogo.png";
+import CardLogoColor from "../../pusb-about/_components/CardLogoColor";
+import CardLogoShape from "../../pusb-about/_components/CardLogoShape";
+import { logoColor, groupedLogoShapes } from "../../../../lib/data";
 
 const logoColorPositions = [-55, 14, 44, 0, -55];
 const logoShapePositions = [44, 50, 44];

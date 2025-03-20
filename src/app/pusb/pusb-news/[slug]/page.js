@@ -1,16 +1,31 @@
-import React, { Suspense } from "react";
-import { GetPUSBNewsBySlug } from "..src/pages/api/pusb-news";
-import { News } from "..src/types/pusb-news-type";
-import Loader from "..src/components/shared/Loader";
+import React, { useEffect, useState } from "react";
+import { GetPUSBNewsBySlug } from "../../../../pages/api/pusb-news";
+import Loader from "../../../../components/shared/Loader";
 import ContainerNews from "./_components/ContainerNews";
 
-const Page = async ({ params }: { params: { slug: string } }) => {
-  const news: News = await GetPUSBNewsBySlug(params.slug);
+const Page = ({ slug }) => {
+  const [news, setNews] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      setLoading(true);
+      try {
+        const fetchedNews = await GetPUSBNewsBySlug(slug);
+        setNews(fetchedNews);
+      } catch (error) {
+        console.error("Failed to fetch news:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchNews();
+  }, [slug]);
+
   return (
     <div className="w-full flex justify-center items-center">
-      <Suspense fallback={<Loader />}>
-        <ContainerNews news={news} />
-      </Suspense>
+      {loading ? <Loader /> : news && <ContainerNews news={news} />}
     </div>
   );
 };

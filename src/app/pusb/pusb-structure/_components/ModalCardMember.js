@@ -1,6 +1,6 @@
 import React from "react";
 import { FiInstagram, FiTwitter, FiLinkedin } from "react-icons/fi";
-import people from "@/assets/s.png"; // Adjust the path if needed
+import people from "../../../../assets/s.png";
 
 const ModalCardMember = () => {
   return (

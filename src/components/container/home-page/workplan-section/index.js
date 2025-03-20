@@ -1,7 +1,6 @@
 import React from "react";
-//TODO
-// import CardWorkplan from "./components/cards/CardWorkplan"; // Adjust path as needed
-// import { mainWorkplanPUSB } from "./lib/data"; // Adjust path as needed
+import CardWorkplan from "../../../cards/CardWorkplan/index"; 
+import { mainWorkplanPUSB } from "../../../../lib/data";
 
 const HomeMainWorkplanSection = ({ element }) => {
   return (
@@ -17,14 +16,14 @@ const HomeMainWorkplanSection = ({ element }) => {
           </span>
         </h1>
       </div>
-      {/* <div
+      <div
         className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 py-8"
-        style={{ gridTemplateColumns: `repeat(${mainWorkplanPUSB.length}, 1fr)` }} // Dynamic column fix
+        style={{ gridTemplateColumns: `repeat(${mainWorkplanPUSB.length}, 1fr)` }} 
       >
         {mainWorkplanPUSB.map((workplan, index) => (
           <CardWorkplan key={index} index={index} {...workplan} />
         ))}
-      </div> */}
+      </div> 
     </section>
   );
 };

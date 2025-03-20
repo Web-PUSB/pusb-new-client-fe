@@ -1,10 +1,7 @@
-import Footer from "..src/components/shared/Footer";
-import Header from "..src/components/shared/Header";
-export default function HomeLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+import Footer from "../components/shared/Footer";
+import Header from "../components/shared/Header";
+
+export default function HomeLayout({ children }) {
   return (
     <main className="scroll-smooth">
       <Header />

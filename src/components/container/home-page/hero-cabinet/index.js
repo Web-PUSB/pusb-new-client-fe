@@ -1,6 +1,6 @@
 import React from "react"; 
 import { AiFillCaretRight } from "react-icons/ai";
-import pusblogo from "@/assets/pusblogo.png";
+import pusblogo from "../../../../assets/pusblogo2.png";
 
 const HomeHeroCabinetSection = () => {
   return (

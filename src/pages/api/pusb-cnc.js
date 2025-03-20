@@ -1,12 +1,12 @@
-import axios, { AxiosError } from "axios";
-import { BaseUrl } from "..pusb/config/config";
+import axios from "axios";
+import { BaseUrl } from "../../config/config";
 
 export const GetPUSBCNC = async () => {
   try {
     const response = await axios.get(`${BaseUrl}/cnc`);
     return response.data?.data;
   } catch (error) {
-    if (error instanceof AxiosError) {
+    if (axios.isAxiosError(error)) {
       console.log(error.response);
     } else {
       console.log(error);
@@ -15,12 +15,12 @@ export const GetPUSBCNC = async () => {
   return null;
 };
 
-export const GetPUSBCNCById = async (id: string) => {
+export const GetPUSBCNCById = async (id) => {
   try {
     const response = await axios.get(`${BaseUrl}/cnc/${id}`);
     return response.data?.data[0];
   } catch (error) {
-    if (error instanceof AxiosError) {
+    if (axios.isAxiosError(error)) {
       console.log(error.response);
     } else {
       console.log(error);
@@ -29,12 +29,12 @@ export const GetPUSBCNCById = async (id: string) => {
   }
 };
 
-export const GetPUSBCNCWorkplanByCnCId = async (cncId: string) => {
+export const GetPUSBCNCWorkplanByCnCId = async (cncId) => {
   try {
     const response = await axios.get(`${BaseUrl}/cnc/${cncId}/workplan`);
     return response.data?.data;
   } catch (error) {
-    if (error instanceof AxiosError) {
+    if (axios.isAxiosError(error)) {
       console.log(error.response);
     } else {
       console.log(error);
@@ -43,17 +43,14 @@ export const GetPUSBCNCWorkplanByCnCId = async (cncId: string) => {
   return null;
 };
 
-export const GetPUSBCNCWorkplanById = async (
-  cncId: string,
-  WorkplanId: string,
-) => {
+export const GetPUSBCNCWorkplanById = async (cncId, workplanId) => {
   try {
     const response = await axios.get(
-      `${BaseUrl}/cnc/${cncId}/Workplan/${WorkplanId}`,
+      `${BaseUrl}/cnc/${cncId}/workplan/${workplanId}`
     );
     return response.data?.data[0];
   } catch (error) {
-    if (error instanceof AxiosError) {
+    if (axios.isAxiosError(error)) {
       console.log(error.response);
     } else {
       console.log(error);

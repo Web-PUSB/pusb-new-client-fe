@@ -1,8 +1,16 @@
 import React from "react";
-import { EventTimeline } from "..src/types/pusb-event-type";
-import { formatDate } from "..src/utils/formatTime";
 import { TbTimelineEventText } from "react-icons/tb";
-const TimelineEvents = ({ timeline }: { timeline: EventTimeline }) => {
+
+// Utility function to format the date (example)
+const formatDate = (date) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};
+
+const TimelineEvents = ({ timeline }) => {
   return (
     <div className="w-96 relative mb-6 sm:mb-0">
       <div className="w-full flex items-center">
@@ -12,11 +20,15 @@ const TimelineEvents = ({ timeline }: { timeline: EventTimeline }) => {
         <div className="hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
       </div>
       <div className="w-full mt-3 sm:pe-20">
-        <h3 className="text-lg font-semibold text-white">{timeline.title}</h3>
+        <h3 className="text-lg font-semibold text-white">
+          {timeline?.title || "No Title"}
+        </h3>
         <p className="block mb-2 text-sm font-normal leading-none text-gray-300">
-          Released on {formatDate(timeline.event_date)}
+          Released on {timeline?.event_date ? formatDate(timeline.event_date) : "Unknown Date"}
         </p>
-        <p className="text-base font-normal text-400">{timeline.description}</p>
+        <p className="text-base font-normal text-gray-400">
+          {timeline?.description || "No description available."}
+        </p>
       </div>
     </div>
   );

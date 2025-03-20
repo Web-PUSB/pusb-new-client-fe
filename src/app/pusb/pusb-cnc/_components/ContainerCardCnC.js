@@ -1,41 +1,29 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
-import { CNC } from "..src/types/pusb-cnc-type";
-import Sceleton from "..src/components/shared/Sceleton";
-import Pagination from "..src/components/shared/Pagination";
-import Link from "next/link";
+import Sceleton from "../../../../components/shared/Sceleton";
+import Pagination from "../../../../components/shared/Pagination";
 import CardCnC from "./CardCnC";
-import { ITEMS_PER_PAGE } from "..src/lib/constants";
+import { ITEMS_PER_PAGE } from "../../../../lib/constants";
 
-const ContainerCardCnC = ({
-  isLatest,
-  cnc,
-  error,
-}: {
-  isLatest?: boolean;
-  cnc: CNC[] | null;
-  error: string | null;
-}) => {
-  const [category, setCategory] = useState<string>("All");
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [filteredcnc, setFilteredCnC] = useState<CNC[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+const ContainerCardCnC = ({ isLatest, cnc, error }) => {
+  const [category, setCategory] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filteredCnc, setFilteredCnc] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       if (cnc) {
-        let updatedCnC = cnc;
+        let updatedCnc = cnc;
 
         if (isLatest) {
-          updatedCnC = cnc.slice(0, 3);
+          updatedCnc = cnc.slice(0, 3);
         } else if (category !== "All") {
-          updatedCnC = cnc.filter((n) => n.category === category);
+          updatedCnc = cnc.filter((n) => n.category === category);
         }
 
-        setFilteredCnC(updatedCnC);
+        setFilteredCnc(updatedCnc);
         setCurrentPage(1);
       }
     }, 1000);
@@ -59,8 +47,8 @@ const ContainerCardCnC = ({
 
   const indexOfLastCnc = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstCnc = indexOfLastCnc - ITEMS_PER_PAGE;
-  const currentCnc = filteredcnc.slice(indexOfFirstCnc, indexOfLastCnc);
-  const totalPages = Math.ceil(filteredcnc.length / ITEMS_PER_PAGE);
+  const currentCnc = filteredCnc.slice(indexOfFirstCnc, indexOfLastCnc);
+  const totalPages = Math.ceil(filteredCnc.length / ITEMS_PER_PAGE);
 
   return (
     <div className="w-full">
@@ -103,7 +91,7 @@ const ContainerCardCnC = ({
             ))}
       </section>
 
-      {!loading && filteredcnc.length > ITEMS_PER_PAGE && !isLatest && (
+      {!loading && filteredCnc.length > ITEMS_PER_PAGE && !isLatest && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
@@ -113,11 +101,12 @@ const ContainerCardCnC = ({
 
       {isLatest && (
         <div className="w-full flex justify-center mt-8">
-          <Link href={`pusb-cnc/all`}>
-            <p className="text-blue-400 hover:bg-white py-2 px-4 rounded-lg font-medium text-base hover:text-blue-800 animation-all duration-300">
-              See All CnC&apos;s
-            </p>
-          </Link>
+          <a
+            href="/pusb-cnc/all"
+            className="text-blue-400 hover:bg-white py-2 px-4 rounded-lg font-medium text-base hover:text-blue-800 transition duration-300"
+          >
+            See All CnC's
+          </a>
         </div>
       )}
     </div>

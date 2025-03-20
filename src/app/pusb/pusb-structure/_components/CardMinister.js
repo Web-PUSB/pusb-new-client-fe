@@ -1,5 +1,5 @@
 import React from "react";
-import people from "@/assets/s.png"; // Adjust the path as needed
+import people from "../../../../assets/s.png";
 
 const CardMinister = ({ name, position, image }) => {
   return (

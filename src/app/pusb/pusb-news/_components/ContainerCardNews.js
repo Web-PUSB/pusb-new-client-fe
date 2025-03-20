@@ -1,26 +1,14 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
-import CardNews from "..src/app/pusb/pusb-news/_components/CardNews";
-import { News } from "..src/types/pusb-news-type";
-import Pagination from "..src/components/shared/Pagination";
-import Sceleton from "..src/components/shared/Sceleton";
-import Link from "next/link";
-import { ITEMS_PER_PAGE } from "..src/lib/constants";
+import CardNews from "./CardNews";
+import Pagination from "../../../../components/shared/Pagination";
+import Sceleton from "../../../../components/shared/Sceleton";
+import { ITEMS_PER_PAGE } from "../../../../lib/constants";
 
-const ContainerCardNews = ({
-  isLatest,
-  news,
-  error,
-}: {
-  isLatest?: boolean;
-  news: News[] | null;
-  error: string | null;
-}) => {
-  const [category, setCategory] = useState<string>("All");
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [filteredNews, setFilteredNews] = useState<News[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+const ContainerCardNews = ({ isLatest, news, error }) => {
+  const [category, setCategory] = useState("All");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [filteredNews, setFilteredNews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
@@ -64,6 +52,7 @@ const ContainerCardNews = ({
 
   return (
     <div className="w-full">
+      {/* Category Filter */}
       {!isLatest && (
         <div className="w-full flex justify-end my-4">
           <select
@@ -87,6 +76,7 @@ const ContainerCardNews = ({
         </div>
       )}
 
+      {/* News Cards */}
       <section className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 my-16">
         {loading
           ? isLatest
@@ -103,6 +93,7 @@ const ContainerCardNews = ({
             ))}
       </section>
 
+      {/* Pagination */}
       {!loading && filteredNews.length > ITEMS_PER_PAGE && !isLatest && (
         <Pagination
           currentPage={currentPage}
@@ -111,13 +102,15 @@ const ContainerCardNews = ({
         />
       )}
 
+      {/* See All News */}
       {isLatest && (
         <div className="w-full flex justify-center mt-8">
-          <Link href={`pusb-news/all`}>
-            <p className="text-blue-400 hover:bg-white py-2 px-4 rounded-lg font-medium text-base hover:text-blue-800 animation-all duration-300">
-              See All News
-            </p>
-          </Link>
+          <a
+            href="/pusb-news/all"
+            className="text-blue-400 hover:bg-white py-2 px-4 rounded-lg font-medium text-base hover:text-blue-800 transition-all duration-300"
+          >
+            See All News
+          </a>
         </div>
       )}
     </div>
