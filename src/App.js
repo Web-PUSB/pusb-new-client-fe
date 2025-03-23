@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import React, { Suspense } from "react";
 import Main from "./Main";
 import Home from "./Home";
@@ -14,25 +14,25 @@ const ContactUs = React.lazy(() => import("./app/pusb/pusb-contact/page"));
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Main>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            {/* Splash Screen → Home */}
-            <Route path="/" element={<Home />} />
+            {/* Use 'index' instead of '/' to define the home route */}
+            <Route index element={<Home />} />
 
             {/* Other pages */}
-            <Route path="/pusb/pusb-about" element={<AboutUs />} />
-            <Route path="/pusb/pusb-structure" element={<Structure />} />
-            <Route path="/pusb/pusb-event" element={<Events />} />
-            <Route path="/pusb/pusb-cnc" element={<CnC />} />
-            <Route path="/pusb/pusb-sop" element={<SOP />} />
-            <Route path="/pusb/pusb-news" element={<News />} />
-            <Route path="/pusb/pusb-contact" element={<ContactUs />} />
+            <Route path="pusb/pusb-about" element={<AboutUs />} />
+            <Route path="pusb/pusb-structure" element={<Structure />} />
+            <Route path="pusb/pusb-event" element={<Events />} />
+            <Route path="pusb/pusb-cnc" element={<CnC />} />
+            <Route path="pusb/pusb-sop" element={<SOP />} />
+            <Route path="pusb/pusb-news" element={<News />} />
+            <Route path="pusb/pusb-contact" element={<ContactUs />} />
           </Routes>
         </Suspense>
       </Main>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
