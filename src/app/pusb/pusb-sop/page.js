@@ -14,8 +14,8 @@ const PDFViewer = ({ isEnglish }) => {
 
   useEffect(() => {
     setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 500); // Simulate loading time
-    return () => clearTimeout(timer); // ✅ Cleanup to avoid state inconsistencies
+    const timer = setTimeout(() => setLoading(false), 500); 
+    return () => clearTimeout(timer); 
   }, [isEnglish]);
 
   // Memoize the worker URL to avoid recreating it on every render

@@ -1,12 +1,12 @@
 "use client";
 import React, { useRef } from "react";
-import HomeHeroSection from "..src/components/container/home-page/hero-section";
-import HomeHeroCabinetSection from "..src/components/container/home-page/hero-cabinet";
-import HomeMainWorkplanSection from "..src/components/container/home-page/workplan-section";
-import HomeYoutubePlatformSection from "..src/components/container/home-page/platform-section/youtube";
-import HomeSpotifyPlatformSection from "..src/components/container/home-page/platform-section/spotify";
-import HomeInstagramPlatformSection from "..src/components/container/home-page/platform-section/instagram";
-import HomeHighlightSection from "..src/components/container/home-page/highlight-section";
+import HomeHeroSection from "../../components/container/home-page/hero-section/index";
+import HomeHeroCabinetSection from "../../components/container/home-page/hero-cabinet/index";
+import HomeMainWorkplanSection from "../../components/container/home-page/workplan-section/index";
+import HomeYoutubePlatformSection from "../../components/container/home-page/platform-section/youtube/index";
+import HomeSpotifyPlatformSection from "../../components/container/home-page/platform-section/spotify/index";
+import HomeInstagramPlatformSection from "../../components/container/home-page/platform-section/instagram/index";
+import HomeHighlightSection from "../../components/container/home-page/highlight-section/index";
 export default function Home() {
   const element = useRef<HTMLDivElement>(null);
 

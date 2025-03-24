@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; 
-import SplashScreen from "@/components/shared/SplashScreen"; 
+import SplashScreen from "../components/shared/SplashScreen"; 
 
 export default function Home() {
   const [loading, setLoading] = useState(true);

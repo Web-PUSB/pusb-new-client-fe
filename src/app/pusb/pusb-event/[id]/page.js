@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
-import BannerEvent from "../pusb-event/[id]/_components/BannerEvent";
-import ContainerTimelineEvents from "../pusb-event/[id]/_components/ContainerTimelineEvents";
-import Loader from "../src/components/shared/Loader";
+import BannerEvent from "../../pusb-event/[id]/_components/BannerEvent";
+import ContainerTimelineEvents from "../../pusb-event/[id]/_components/ContainerTimelineEvents";
+import Loader from "../../../../components/shared/Loader";
 
 const Page = ({ id }) => {
   const [pusbEvent, setPUSBEvent] = useState(null);
