@@ -11,7 +11,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("/api/pusb-profile"); // Adjust API endpoint if needed
+        const response = await fetch("/api/pusb-profile");
         if (!response.ok) throw new Error("Failed to fetch data");
         const data = await response.json();
         setProfilePUSB(data);
@@ -55,12 +55,12 @@ const Footer = () => {
               <li className="flex items-center gap-2">
                 <MdOutlineEmail className="w-5 h-5 lg:w-6 lg:h-6" />
                 <a
-                  href={`mailto:${profilePUSB?.email ?? "pusb@example.com"}`}
+                  href={`mailto:${profilePUSB?.email ?? "pusb@president.ac.id"}`}
                   className="text-white underline hover:text-gray-300"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {profilePUSB?.email ?? "pusb@example.com"}
+                  {profilePUSB?.email ?? "pusb@president.ac.id"}
                 </a>
               </li>
             </ul>
@@ -68,19 +68,19 @@ const Footer = () => {
           <div className="w-full lg:w-1/2 px-4 lg:px-8">
             <p className="font-medium text-base lg:text-lg">Find Us</p>
             <div className="w-full grid grid-cols-3 lg:grid-cols-5 gap-4 mt-4 justify-center">
-              <a href={profilePUSB?.instagram ?? "https://instagram.com"} target="_blank" rel="noopener noreferrer">
+              <a href={profilePUSB?.instagram ?? "https://www.instagram.com/pusbpresuniv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw== "} target="_blank" rel="noopener noreferrer">
                 <FiInstagram className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
-              <a href={profilePUSB?.linkedin ?? "https://linkedin.com"} target="_blank" rel="noopener noreferrer">
+              <a href={profilePUSB?.linkedin ?? "https://www.linkedin.com/company/president-university-student-union/"} target="_blank" rel="noopener noreferrer">
                 <FiLinkedin className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
-              <a href={profilePUSB?.twitter ?? "https://twitter.com"} target="_blank" rel="noopener noreferrer">
+              <a href={profilePUSB?.twitter ?? "https://x.com/pusupresuniv"} target="_blank" rel="noopener noreferrer">
                 <FiTwitter className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
-              <a href={profilePUSB?.youtube ?? "https://youtube.com"} target="_blank" rel="noopener noreferrer">
+              <a href={profilePUSB?.youtube ?? "https://www.youtube.com/@PUSB_PresidentUniversity"} target="_blank" rel="noopener noreferrer">
                 <FiYoutube className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
-              <a href={profilePUSB?.podcast ?? "https://spotify.com"} target="_blank" rel="noopener noreferrer">
+              <a href={profilePUSB?.podcast ?? "https://open.spotify.com/show/5CnFz5rV7STWOZpn0m7cn6?si=1f24660638f84041&nd=1&dlsi=f5b056828ba04b81"} target="_blank" rel="noopener noreferrer">
                 <AiFillSpotify className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
             </div>

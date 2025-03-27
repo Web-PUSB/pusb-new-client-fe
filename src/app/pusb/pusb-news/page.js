@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ContainerCardNews from "./_components/ContainerCardNews";
 import { GetPUSBNews } from "../../../pages/api/pusb-news";
 
-const Page = async () => {
-  let news = [];
-  let error = null;
+const Page = () => {
+  const [news, setNews] = useState([]);
+  const [error, setError] = useState(null);
 
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    news = await GetPUSBNews();
-  } catch (err) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    error = `Failed to load news.${err}`;
-  }
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const data = await GetPUSBNews();
+        if (data) {
+          setNews(data);
+        }
+      } catch (err) {
+        setError(`Failed to load news. ${err.message}`);
+      }
+    };
+
+    fetchNews(); 
+  }, []); 
 
   return (
     <main className="w-full min-h-screen px-8 lg:px-16">
@@ -30,7 +37,9 @@ const Page = async () => {
           </p>
         </div>
       </section>
-      <ContainerCardNews isLatest={true} news={news} error={error} />
+      <section className="w-full mt-8">
+        <ContainerCardNews isLatest={true} news={news} error={error} />
+      </section>
     </main>
   );
 };

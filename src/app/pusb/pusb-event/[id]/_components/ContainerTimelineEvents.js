@@ -6,11 +6,10 @@ const ContainerTimelineEvents = ({ eventId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // TODO: Fetch data from API
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`https://your-api-url.com/pusb-events/${eventId}`);
+        const response = await fetch(`https://api.pusb.or.id/pusb-events/${eventId}`);
         if (!response.ok) throw new Error("Failed to fetch events");
 
         const data = await response.json();

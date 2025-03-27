@@ -19,7 +19,7 @@ const HomeYoutubePlatformSection = () => {
           className="w-full h-full"
           title="A YouTube video"
           frameBorder="0"
-          allowFullScreen
+          allow="fullscreen"
         ></iframe>
       </div>
     </section>

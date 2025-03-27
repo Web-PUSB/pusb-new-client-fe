@@ -18,8 +18,7 @@ const HomeSpotifyPlatformSection = () => {
           src="https://open.spotify.com/embed/episode/3SZ645wXs5GDKW8X86daO3?utm_source=generator"
           className="w-full h-full"
           title="A Spotify podcast"
-          frameBorder="0" // Use 'frameBorder' instead of 'frameborder'
-          allowFullScreen // Simplified attribute for boolean values
+          frameBorder="0" 
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
         ></iframe>

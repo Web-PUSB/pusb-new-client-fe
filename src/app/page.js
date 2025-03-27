@@ -14,7 +14,7 @@ export default function Home() {
 
     if (lastSplashTime && currentTime - parseInt(lastSplashTime) < twoMinutes) {
       setLoading(false);
-      navigate("/pusb"); // Navigate to /pusb after splash
+      navigate("/pusb"); 
     } else {
       setLoading(true);
       setSplash(true);
