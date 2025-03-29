@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import PDFViewer from "..pusb-sop/_components/PDFPreview";
+import PDFViewer from "../_components/PDFPreview";
 
 const Page = () => {
   return (
