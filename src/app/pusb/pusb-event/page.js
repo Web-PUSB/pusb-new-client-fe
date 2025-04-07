@@ -54,18 +54,21 @@ const Page = () => {
       </section>
 
       {/* Previous Events Section */}
-      <section className="w-full">
-        <h2 className="text-2xl font-bold lg:text-3xl">
-          <span className="italic">Previous</span> EVENTS
-        </h2>
+     <section className="w-full">
+      <h2 className="text-2xl font-bold lg:text-3xl">
+        <span className="italic">Previous</span> EVENTS
+      </h2>
 
-        <ContainerCardEvents
-          pusbEvents={pusbEvents} 
-          error={error}
-          loading={loading}
-          isLatest={true}
-        />
-      </section>
+      <ContainerCardEvents
+        pusbEvents={pusbEvents?.filter(
+          (event) => event.name?.toUpperCase().trim() !== "COMING SOON"
+        )}
+        error={error}
+        loading={loading}
+        isLatest={true}
+      />
+    </section>
+
 
       {/* See All Events Link */}
       <section className="w-full flex justify-center mt-8">
