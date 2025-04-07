@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BaseUrl } from "./config/config"; 
+import { BaseUrl } from "../../config/config"; 
 
 export const GetPUSBEvent = async () => {
   try {

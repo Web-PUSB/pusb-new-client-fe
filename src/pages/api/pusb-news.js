@@ -1,19 +1,14 @@
 import axios from "axios";
 import { BaseUrl } from "../../config/config";
 
-export const GetPUSBNews = async () => {
+export async function GetPUSBNews() {
   try {
     const response = await axios.get(`${BaseUrl}/news`);
-    return response.data?.data;
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.log(error.response);
-    } else {
-      console.log(error);
-    }
+    return response.data.data;
+  } catch (err) {
+    throw new Error(`Fetch failed: ${err.message}`);
   }
-  return null;
-};
+}
 
 export const GetPUSBNewsBySlug = async (slug) => {
   try {

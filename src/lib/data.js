@@ -177,7 +177,7 @@ export const eventsHighlightPUSB = [
   },
   {
     eventImage: Logo,
-    eventName: "Communication Forum I 2025",
+    eventName: "Communication Forum I",
     eventDesc:
       "A platform for CnC to share their upcoming work plans, This initiative ensures inclusive participation, gathers feedback, and promotes continuous improvement. By offering a space for open discussions, it aims to strengthen cooperation, foster transparent two-way communication where every idea is valued, and ensure all voices are heard. Additionally, it provides an opportunity to monitor and evaluate progress, enabling constructive feedback for ongoing improvement",
     eventTimeline: "Completed",

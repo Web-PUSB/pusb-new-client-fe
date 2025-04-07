@@ -1,22 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // React Router for navigation
+import { Link, useParams } from "react-router-dom";
 import { FiInstagram } from "react-icons/fi";
-import CardCnCActivityContainer from "./components/CardCnCActivityContainer";
-import { GetPUSBCNCById } from "./api/pusb-cnc"; // Adjust API path as needed
-import { CNC } from "./types/pusb-cnc-type";
-import Loader from "./components/shared/Loader";
+import CardCnCActivityContainer from "../_components/CardCnCActivityContainer";
+import { GetPUSBCNCById } from "../../../../pages/api/pusb-cnc";
+import Loader from "../../../../components/shared/Loader";
 
-const Page = ({ match }) => {
-  const cncId = match.params.id; // Extract ID from React Router
+const Page = () => {
+  const { id: cncId } = useParams();
 
-  const [cnc, setCnc] = useState<CNC | null>(null);
+  const [cnc, setCnc] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await GetPUSBCNCById(cncId);
-        setCnc(data);
+        const sanitized = {
+          short_name: String(data?.short_name ?? "Unknown"),
+          full_name: String(data?.full_name ?? ""),
+          image: typeof data?.image === "string" ? data.image : "",
+          instagram: typeof data?.instagram === "string" ? data.instagram : "#",
+          category: String(data?.category ?? "General"),
+          description: String(data?.description ?? ""),
+        };
+
+        setCnc({ ...data, ...sanitized });
       } catch (error) {
         console.error("Error fetching CNC data", error);
       } finally {
@@ -64,7 +72,7 @@ const Page = ({ match }) => {
               <div className="relative h-72 sm:h-96 lg:h-full">
                 <img
                   alt={cnc.short_name}
-                  src={cnc.image}
+                  src={cnc.image || "/fallback-image.jpg"}
                   className="absolute inset-0 h-100 w-100 object-fit lg:rounded-xl"
                   width={500}
                   height={500}
@@ -91,7 +99,11 @@ const Page = ({ match }) => {
                     <span className="text-sm text-gray-900 font-bold">
                       Get in Touch:
                     </span>
-                    <Link to={cnc.instagram}>
+                    <Link
+                      to={cnc.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <FiInstagram className="w-5 h-5 hover:scale-110 transition-all duration-300" />
                     </Link>
                   </div>
@@ -102,13 +114,13 @@ const Page = ({ match }) => {
         </div>
       </section>
 
-      <section className="w-full px-8 lg:px-16">
+      {/* <section className="w-full px-8 lg:px-16">
         <h1 className="text-4xl font-semibold lg:text-5xl mb-4 lg:mb-0 py-8">
           <span className="italic">Workplan</span>
           <span className="font-bold"> {cnc.short_name}</span>
         </h1>
         <CardCnCActivityContainer id={cncId} />
-      </section>
+      </section> */}
     </main>
   );
 };

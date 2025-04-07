@@ -3,33 +3,34 @@ import { GetPUSBProfile } from "../utils/aboutProfileAPI";
 import ContainerAccordion from "../_components/Accordion/ContainerAccordion";
 import CardLogoContainer from "../_components/CardLogoContainer";
 import { MissionPUSB } from "../../../../lib/data";
+import pusblogo from "../../../../assets/pusblogo2.png";
 
 const PUSBPage = () => {
   const [profilePUSB, setProfilePUSB] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchProfile = async () => {
-  //     try {
-  //       const data = await GetPUSBProfile();
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const data = await GetPUSBProfile();
 
-  //       if (!data) {
-  //         throw new Error("Profile data is empty");
-  //       }
+        if (!data) {
+          throw new Error("Profile data is empty");
+        }
 
-  //       console.log("API Response:", data);
-  //       setProfilePUSB(data);
-  //     } catch (err) {
-  //       console.error("Failed to fetch profile:", err.message);
-  //       setError(err.message);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+        console.log("API Response:", data);
+        setProfilePUSB(data);
+      } catch (err) {
+        console.error("Failed to fetch profile:", err.message);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  //   fetchProfile();
-  // }, []);
+    fetchProfile();
+  }, []);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="text-red-500">Error: {error}</p>;
@@ -44,14 +45,14 @@ const PUSBPage = () => {
           {profilePUSB.cabinet_logo && (
             <>
               <img
-                src={profilePUSB.cabinet_logo}
+                src={pusblogo}
                 alt="PUSB Logo"
-                className="w-44 lg:w-56"
+                className="w-56 lg:w-56"
               />
               <img
                 src={profilePUSB.cabinet_logo}
                 alt="PUSB Cabinet Logo"
-                className="w-[12rem] lg:w-[20rem]"
+                className="w-80 lg:w-80"
               />
             </>
           )}

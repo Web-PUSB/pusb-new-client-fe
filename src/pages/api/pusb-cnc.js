@@ -18,14 +18,20 @@ export const GetPUSBCNC = async () => {
 export const GetPUSBCNCById = async (id) => {
   try {
     const response = await axios.get(`${BaseUrl}/cnc/${id}`);
-    return response.data?.data[0];
+    const data = response.data?.data;
+    console.log("Fetched CNC raw data:", data);
+    if (Array.isArray(data) && data.length > 0 && typeof data[0] === "object") {
+      return data[0];
+    } else {
+      throw new Error("Invalid or empty CNC data");
+    }
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.log(error.response);
+      console.error("Axios error:", error.response);
     } else {
-      console.log(error);
+      console.error("Unexpected error:", error);
     }
-    throw error;
+    throw error; 
   }
 };
 

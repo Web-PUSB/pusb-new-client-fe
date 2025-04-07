@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const CNC = ({ id, short_name, full_name, image, category, highlight, description, instagram, status }) => {
+export const CNC = ({ id, short_name, full_name, image, category, highlight, description, instagram, status }) => {
   return (
     <div>
       <h2>{short_name} ({full_name})</h2>

@@ -3,6 +3,7 @@ import { FiInstagram, FiTwitter, FiLinkedin, FiYoutube } from "react-icons/fi";
 import { MdOutlineEmail } from "react-icons/md";
 import { AiFillSpotify } from "react-icons/ai";
 import pusblogo from "../../assets/pusblogo2.png";
+import { GetPUSBProfile } from "../../pages/api/pusb-profile";
 
 const Footer = () => {
   const [profilePUSB, setProfilePUSB] = useState(null);
@@ -11,20 +12,18 @@ const Footer = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await fetch("/api/pusb-profile");
-        if (!response.ok) throw new Error("Failed to fetch data");
-        const data = await response.json();
+        const data = await GetPUSBProfile();
         setProfilePUSB(data);
       } catch (err) {
-        setProfilePUSB(null);
-        setError(`Failed to load data. ${err.message}`);
+        setError(`Failed to load data. ${err}`);
       }
     };
+
     fetchProfile();
   }, []);
-
+  
   if (error) {
-    return <div>{error}</div>;
+    return <div className="text-center text-red-500">{error}</div>;
   }
 
   return (
@@ -48,6 +47,7 @@ const Footer = () => {
               : "Jababeka Education Park, Jl. Ki Hajar Dewantara, RT.2/RW.4, Mekarmukti, Cikarang Utara, Bekasi Regency, West Java 17530"}
           </p>
         </div>
+
         <div className="w-full flex flex-col lg:flex-row justify-around mt-4 pb-4 gap-8">
           <div className="w-full lg:w-1/2 px-4 lg:px-8">
             <p className="font-medium text-base lg:text-lg">Contact Us</p>
@@ -65,22 +65,43 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+
           <div className="w-full lg:w-1/2 px-4 lg:px-8">
             <p className="font-medium text-base lg:text-lg">Find Us</p>
             <div className="w-full grid grid-cols-3 lg:grid-cols-5 gap-4 mt-4 justify-center">
-              <a href={profilePUSB?.instagram ?? "https://www.instagram.com/pusbpresuniv?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw== "} target="_blank" rel="noopener noreferrer">
+              <a
+                href={profilePUSB?.instagram ?? "https://www.instagram.com/pusbpresuniv"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FiInstagram className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
-              <a href={profilePUSB?.linkedin ?? "https://www.linkedin.com/company/president-university-student-union/"} target="_blank" rel="noopener noreferrer">
+              <a
+                href={profilePUSB?.linkedin ?? "https://www.linkedin.com/company/president-university-student-union/"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FiLinkedin className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
-              <a href={profilePUSB?.twitter ?? "https://x.com/pusupresuniv"} target="_blank" rel="noopener noreferrer">
+              <a
+                href={profilePUSB?.twitter ?? "https://x.com/pusupresuniv"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FiTwitter className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
-              <a href={profilePUSB?.youtube ?? "https://www.youtube.com/@PUSB_PresidentUniversity"} target="_blank" rel="noopener noreferrer">
+              <a
+                href={profilePUSB?.youtube ?? "https://www.youtube.com/@PUSB_PresidentUniversity"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <FiYoutube className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
-              <a href={profilePUSB?.podcast ?? "https://open.spotify.com/show/5CnFz5rV7STWOZpn0m7cn6?si=1f24660638f84041&nd=1&dlsi=f5b056828ba04b81"} target="_blank" rel="noopener noreferrer">
+              <a
+                href={profilePUSB?.podcast ?? "https://open.spotify.com/show/5CnFz5rV7STWOZpn0m7cn6"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <AiFillSpotify className="w-5 h-5 lg:w-6 lg:h-6" />
               </a>
             </div>

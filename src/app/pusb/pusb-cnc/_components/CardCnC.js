@@ -1,41 +1,42 @@
 import React from "react";
-import { Link } from "react-router-dom"; // React Router for navigation
+import { Link } from "react-router-dom";
 import { Card } from "flowbite-react";
 
 const CardCnC = ({ cnc }) => {
+  const previewLength = 100;
+  const shortDescription =
+    cnc.description?.length > previewLength
+      ? cnc.description.slice(0, previewLength) + "..."
+      : cnc.description;
+
   return (
-    <Card className="group relative block bg-black border-0 h-52 shadow-sm shadow-white">
-      <div className="relative">
+    <Card className="group relative bg-black border-0 h-64 shadow-sm shadow-white overflow-hidden flex flex-col items-center justify-center text-center">
+      <div className="flex justify-center items-center mb-3">
         <img
           alt={cnc.short_name}
           src={cnc.image}
-          width={300}
-          height={300}
-          className="absolute inset-0 h-full w-30 ml-20 object-fit opacity-75 transition-opacity group-hover:opacity-50"
+          className="w-[120px] h-[120px] object-cover rounded-xl shadow-md"
         />
       </div>
 
-      <div className="relative p-4 sm:p-6 lg:p-4">
-        <p className="text-sm font-semibold uppercase tracking-widest text-gray-800">
-          <span>{cnc.category}</span>
+      {/* Text Content */}
+      <div className="px-4 z-10">
+        <p className="text-sm font-semibold uppercase tracking-widest text-gray-400">
+          {cnc.category}
         </p>
-
         <p className="text-xl font-bold text-white sm:text-2xl">
           {cnc.short_name}
         </p>
-        <p className="text-sm font-medium tracking-wide text-gray-100">
-          {cnc.full_name}
-        </p>
+        <p className="text-sm font-medium text-gray-300">{cnc.full_name}</p>
+      </div>
 
-        <div className="mt-8 lg:mt-16">
-          <div className="-translate-y-16 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-            <Link to={`/pusb-cnc/${cnc.id}`}>
-              <p className="text-sm text-white text-justify hover:underline">
-                {cnc.description}
-              </p>
-            </Link>
-          </div>
-        </div>
+      {/* Hover Description */}
+      <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity z-20">
+        <Link to={`/pusb-cnc/${cnc.id}`}>
+          <p className="text-sm text-white text-justify bg-black/70 p-2 rounded hover:underline">
+            {shortDescription}
+          </p>
+        </Link>
       </div>
     </Card>
   );

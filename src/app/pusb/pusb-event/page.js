@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CardHighlightContainer from "./_components/CardHighlightContainer";
 import ContainerCardEvents from "./_components/ContainerCardEvents";
+import { GetPUSBEvent } from "../../../pages/api/pusb-events"; 
 
 const Page = () => {
   const [pusbEvents, setPusbEvents] = useState([]);
@@ -10,9 +11,8 @@ const Page = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch("/api/pusb-events");
-        const data = await response.json();
-        setPusbEvents(data);
+        const events = await GetPUSBEvent(); 
+        setPusbEvents(events);
       } catch (err) {
         setError(`Failed to load events. ${err.message}`);
       } finally {
@@ -60,7 +60,7 @@ const Page = () => {
         </h2>
 
         <ContainerCardEvents
-          pusbeEvents={pusbEvents}
+          pusbEvents={pusbEvents} 
           error={error}
           loading={loading}
           isLatest={true}

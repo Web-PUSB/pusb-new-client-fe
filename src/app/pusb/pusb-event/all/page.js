@@ -1,9 +1,10 @@
+"use client";
 import React, { useState, useEffect } from "react";
-import CardTabEvents from "../pusb-event/components/CardTabEvents";
-import { GetPUSBEvent } from "../api/pusb-events";
-import Pagination from "../components/shared/Pagination";
-import Sceleton from "../components/shared/Sceleton";
-import DropdownFilter from "../components/shared/DropdownFilter";
+import CardTabEvents from "../_components/CardTabEvents";
+import { GetPUSBEvent } from "../../../../pages/api/pusb-events"; 
+import Pagination from "../../../../components/shared/Pagination";
+import Sceleton from "../../../../components/shared/Sceleton";
+import DropdownFilter from "../../../../components/shared/DropdownFilter";
 
 const Page = () => {
   const [pusbEvents, setPusbEvents] = useState([]);
@@ -22,7 +23,7 @@ const Page = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const events = await GetPUSBEvent();
+        const events = await GetPUSBEvent(); 
         setPusbEvents(events);
       } catch (err) {
         setError(`Failed to load events. ${err.message}`);
@@ -45,7 +46,7 @@ const Page = () => {
     },
     {
       title: "Period",
-      options: ["Daily", "Monthly", "Annualy"],
+      options: ["Daily", "Monthly", "Annually"], 
     },
   ];
 
@@ -86,9 +87,7 @@ const Page = () => {
   return (
     <main className="w-full min-h-screen px-8 lg:px-16">
       <section className="w-full text-center pt-8">
-        <h1 className="text-4xl lg:text-5xl font-extrabold mb-4">
-          PUSB Events
-        </h1>
+        <h1 className="text-4xl lg:text-5xl font-extrabold mb-4">PUSB Events</h1>
         <h3 className="text-lg text-justify mt-8 mb-4">
           List of all events to be held by PUSB.
         </h3>

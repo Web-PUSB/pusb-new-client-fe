@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Card } from "flowbite-react";
-import ModalActivity from "./pusb-cnc/_components/ModalActivity";
-import { formatDateNews } from "././utils/formatTime";
+import ModalActivity from "../../pusb-cnc/_components/ModalActivity";
+import { formatDateNews } from "../../../../utils/formatTime";
 
-const CardCnCActivity = ({ Workplan }) => {
-  const { day, month } = formatDateNews(Workplan.date_parse);
+const CardCnCActivity = ({ workplan }) => {
+  const { day, month } = formatDateNews(workplan.date_parse);
   const [openModal, setOpenModal] = useState(false);
 
   const handleModalDescription = () => {
@@ -26,7 +26,7 @@ const CardCnCActivity = ({ Workplan }) => {
       <div className="relative p-4 sm:p-6 lg:p-2">
         <div className="flex justify-between items-center">
           <p className="text-xs font-semibold uppercase dark:text-gray-100">
-            {Workplan.duration}
+            {workplan.duration}
           </p>
           <div className="text-center">
             <p className="text-3xl font-semibold">{day}</p>
@@ -36,24 +36,24 @@ const CardCnCActivity = ({ Workplan }) => {
 
         <div className="mt-8 sm:mt-12 lg:mt-20">
           <p className="translate-y-4 group-hover:-translate-y-4 transform transition-all duration-300">
-            {Workplan.title}
+            {workplan.title}
           </p>
           <div className="translate-y-8 transform opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 line-clamp-4">
             <p
               className="text-sm text-white hover:underline cursor-pointer transition-all duration-500"
               onClick={handleModalDescription}
             >
-              {Workplan.description}
+              {workplan.description}
             </p>
           </div>
         </div>
       </div>
 
-      {openModal && (
+      {openModal && workplan && typeof workplan === "object" && (
         <ModalActivity
           openModal={openModal}
           handleModalDescription={handleModalDescription}
-          WorkplanCNC={Workplan}
+          workplan={workplan}
         />
       )}
     </Card>

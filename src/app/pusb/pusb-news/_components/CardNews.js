@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDateNews } from "../../../../utils/formatTime"; 
+import { formatDateNews } from "../../../../utils/formatTime";
 
 const CardNews = ({ news }) => {
   const { day, month } = formatDateNews(news.publish_date);
@@ -16,9 +16,8 @@ const CardNews = ({ news }) => {
       <div className="relative p-4 sm:p-6 lg:p-4">
         <div className="flex justify-between items-center">
           <p className="text-sm font-medium uppercase tracking-widest text-blue-500">
-            <span>{news.category}</span>
+            {news.category}
           </p>
-
           <div>
             <p className="text-3xl font-semibold leading tracking">{day}</p>
             <p className="leading uppercase">{month}</p>

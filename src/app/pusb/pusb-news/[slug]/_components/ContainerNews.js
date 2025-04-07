@@ -1,5 +1,5 @@
 import React from "react";
-import { formatDate } from "../../../../../utils/formatTime";
+import { formatFullDate } from "../../../../../utils/formatTime";
 
 const ContainerNews = ({ news }) => {
   return (
@@ -24,7 +24,7 @@ const ContainerNews = ({ news }) => {
             <span>Admin</span>
           </a>
           on
-          <time>{formatDate(news.publish_date)}</time>
+          <time>{formatFullDate(news.publish_date)}</time>
         </p>
       </div>
       <div>

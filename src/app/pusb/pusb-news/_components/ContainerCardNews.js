@@ -12,8 +12,7 @@ const ContainerCardNews = ({ isLatest, news, error }) => {
 
   useEffect(() => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    const timer = setTimeout(() => {
       if (news) {
         let updatedNews = news;
 
@@ -26,7 +25,10 @@ const ContainerCardNews = ({ isLatest, news, error }) => {
         setFilteredNews(updatedNews);
         setCurrentPage(1);
       }
+      setLoading(false);
     }, 1000);
+
+    return () => clearTimeout(timer);
   }, [category, news, isLatest]);
 
   if (error) {
@@ -56,22 +58,14 @@ const ContainerCardNews = ({ isLatest, news, error }) => {
       {!isLatest && (
         <div className="w-full flex justify-end my-4">
           <select
-            className="bg-transparent border border-white px-4 py-2 rounded-xl"
+            className="bg-transparent border border-white px-4 py-2 rounded-xl text-white"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <option className="text-black" value="All">
-              All Categories
-            </option>
-            <option className="text-black" value="Workplan">
-              Workplan
-            </option>
-            <option className="text-black" value="Event">
-              Event
-            </option>
-            <option className="text-black" value="Press Release">
-              Press Release
-            </option>
+            <option className="text-black" value="All">All Categories</option>
+            <option className="text-black" value="Workplan">Workplan</option>
+            <option className="text-black" value="Event">Event</option>
+            <option className="text-black" value="Press Release">Press Release</option>
           </select>
         </div>
       )}
@@ -79,17 +73,10 @@ const ContainerCardNews = ({ isLatest, news, error }) => {
       {/* News Cards */}
       <section className="w-full grid grid-cols-1 lg:grid-cols-3 gap-8 my-16">
         {loading
-          ? isLatest
-            ? Array.from({ length: 3 }).map((_, index) => (
-                <Sceleton key={index} />
-              ))
-            : Array.from({ length: currentNews.length }).map((_, index) => (
-                <Sceleton key={index} />
-              ))
+          ? (isLatest ? Array.from({ length: 3 }) : Array.from({ length: currentNews.length }))
+              .map((_, i) => <Sceleton key={i} />)
           : currentNews.map((newsItem) => (
-              <div key={newsItem.id}>
-                <CardNews news={newsItem} />
-              </div>
+              <CardNews key={newsItem.id} news={newsItem} />
             ))}
       </section>
 

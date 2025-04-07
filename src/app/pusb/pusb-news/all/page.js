@@ -1,21 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ContainerCardNews from "../_components/ContainerCardNews";
 import { GetPUSBNews } from "../../../../pages/api/pusb-news";
 
-const Page = async () => {
-  let news = [];
-  let error = null;
+const Page = () => {
+  const [news, setNews] = useState([]);
+  const [error, setError] = useState(null);
+  console.log("news:", news);
 
-  try {
-    news = await GetPUSBNews();
-  } catch (err) {
-    error = `Failed to load news.${err}`;
-  }
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const data = await GetPUSBNews();
+        setNews(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    fetchNews();
+  }, []);
 
   return (
-    <main className="w-full min-h-screen px-8 lg:px-16">
-      <ContainerCardNews news={news} error={error} />
-    </main>
+    <ContainerCardNews isLatest={false} news={news} error={error} />
   );
 };
 
