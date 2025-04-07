@@ -7,9 +7,22 @@ import Loader from "../../../../components/shared/Loader";
 
 const Page = () => {
   const { id: cncId } = useParams();
-
   const [cnc, setCnc] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // ✅ Format Instagram URL
+  const formatInstagramUrl = (handle) => {
+    if (!handle) return "#";
+    if (handle.startsWith("http")) return handle;
+    return `https://instagram.com/${handle.replace("@", "").trim()}`;
+  };
+
+  // ✅ Format display name (show as @username)
+  const formatInstagramDisplay = (handle) => {
+    if (!handle) return "";
+    const clean = handle.replace("https://instagram.com/", "").replace("@", "").trim().split("/")[0];
+    return `@${clean}`;
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -94,26 +107,31 @@ const Page = () => {
                   {cnc.category} CnC
                 </p>
                 <p className="mt-4 text-gray-600">{cnc.description}</p>
+
                 <div className="mt-4">
                   <div className="w-full flex items-center gap-4 mt-2 text-black">
                     <span className="text-sm text-gray-900 font-bold">
                       Get in Touch:
                     </span>
-                    <Link
-                      to={cnc.instagram}
+                    <a
+                      href={formatInstagramUrl(cnc.instagram)}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-blue-600 hover:underline"
                     >
                       <FiInstagram className="w-5 h-5 hover:scale-110 transition-all duration-300" />
-                    </Link>
+                      <span>{formatInstagramDisplay(cnc.instagram)}</span>
+                    </a>
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* Uncomment if needed */}
       {/* <section className="w-full px-8 lg:px-16">
         <h1 className="text-4xl font-semibold lg:text-5xl mb-4 lg:mb-0 py-8">
           <span className="italic">Workplan</span>
