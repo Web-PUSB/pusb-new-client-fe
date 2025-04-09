@@ -7,7 +7,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "react-jsx",
-    "baseUrl": "./src",
+    // "baseUrl": "./src",
     "paths": {
       "./*": ["./*"],
       "./pusb-about/*": ["./app/pusb/pusb-about/*"],
@@ -19,6 +19,6 @@
       "./pusb-contact/*": ["./app/pusb/pusb-contact/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }

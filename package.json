@@ -13,7 +13,6 @@
     "animejs": "^3.2.2",
     "axios": "^1.8.3",
     "flowbite-react": "^0.10.2",
-    "https-proxy-middleware": "^3.0.3",
     "keen-slider": "^6.8.6",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
@@ -25,7 +24,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3006 react-scripts start",
     "build": "CI=false react-scripts build",
     "test": "react-scripts test"
   },
@@ -49,6 +48,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "http-proxy-middleware": "^3.0.3",
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17"
   }
